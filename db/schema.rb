@@ -10,10 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_08_010257) do
+ActiveRecord::Schema.define(version: 2019_08_11_003441) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "messages", force: :cascade do |t|
+    t.string "text"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_messages_on_user_id"
+  end
 
   create_table "purchases", force: :cascade do |t|
     t.integer "amount"
@@ -33,6 +41,8 @@ ActiveRecord::Schema.define(version: 2019_08_08_010257) do
     t.string "tier"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "zip_code"
   end
 
+  add_foreign_key "messages", "users"
 end
