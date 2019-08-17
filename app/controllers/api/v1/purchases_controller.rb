@@ -28,7 +28,7 @@ class Api::V1::PurchasesController < ApplicationController
   private
  
   def purchase_params
-    params.permit(:amount, :bundle_name)
+    params.permit(:amount, :bundle_name, :user_id)
   end
  
   def find_purchase
