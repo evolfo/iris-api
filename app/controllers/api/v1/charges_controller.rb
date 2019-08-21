@@ -1,6 +1,5 @@
 class Api::V1::ChargesController < ApplicationController
-
-    Stripe.api_key = ENV['STRIPE_S_KEY']
+    Stripe.api_key = Rails.application.credentials.stripe[:secret_key]
 
 	def create
 	  @amount = params[:amount]
@@ -13,8 +12,6 @@ class Api::V1::ChargesController < ApplicationController
 	  end
 
 	  @amount = (@amount).to_i # Must be an integer!
-
-	  byebug
 
 	  Stripe::Charge.create({
 	    amount: @amount,
