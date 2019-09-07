@@ -5,6 +5,6 @@ class User < ApplicationRecord
 	before_create :add_tier
 
 	def add_tier 
-		self.tier = "bronze"
+		self.tier = "silver"
 	end
 end

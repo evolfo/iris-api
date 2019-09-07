@@ -1,0 +1,9 @@
+<h1><%= @user.first_name %> <%= @user.last_name %> just bought a <%= @purchase.bundle_name %> for $<%= @purchase.amount %>.</h1>
+  <h5>Shipping Info:</h5>
+  <ul>
+  	<li>Name: <%= @user.first_name %> <%= @user.last_name %></li>
+  	<li>Phone: <%= @user.phone %></li>
+  	<li>Email: <%= @user.email %></li>
+  	<li>Billing Address: <%= @user.billing_address %></li>
+  	<li>Zip Code: <%= @user.zip_code %></li>
+  </ul>
