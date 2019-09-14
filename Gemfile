@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '2.6.1'
+ruby '2.6.0'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.3'
@@ -20,7 +20,7 @@ gem 'puma', '~> 3.11'
 # gem 'mini_magick', '~> 4.8'
 
 # Use Capistrano for deployment
-gem 'bundler', '~> 2.0', '>= 2.0.2'
+gem 'bundler', '~> 2.0', '>= 2.0.1'
 # gem 'capistrano-rails', group: :development
 
 gem 'stripe', :git => 'https://github.com/stripe/stripe-ruby'
