@@ -20,7 +20,7 @@ gem 'puma', '~> 3.11'
 # gem 'mini_magick', '~> 4.8'
 
 # Use Capistrano for deployment
-gem 'bundler', '~> 2.0', '>= 2.0.1'
+gem 'bundler', '~> 2.0.2'
 # gem 'capistrano-rails', group: :development
 
 gem 'stripe', :git => 'https://github.com/stripe/stripe-ruby'
