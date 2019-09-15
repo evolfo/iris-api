@@ -1,1 +1,4 @@
-web: bundle exec rails s
+web: bundle exec puma -C config/puma.rb
+worker: bundle exec rake jobs:work
+clock: bundle exec clockwork lib/clock.rb
+mailman: ruby script/mailman_server.rb
