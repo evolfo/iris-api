@@ -1,4 +1,6 @@
 namespace :jobs do
-  task work: :environment do |t|
+  desc "sidekiq"
+  task work: :environment do
+   exec("bundle exec sidekiq")
   end
 end
