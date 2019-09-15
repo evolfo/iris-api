@@ -22,6 +22,8 @@ gem 'puma', '~> 3.11'
 
 # Use Capistrano for deployment
 # gem 'bundler', '~> 2.0.1'
+
+gem 'delayed_job_active_record'
 # gem 'capistrano-rails', group: :development
 
 gem 'stripe', :git => 'https://github.com/stripe/stripe-ruby'
