@@ -75,11 +75,11 @@ test:
 #
 # You can use this database configuration with:
 #
-#   production:
-#     url: <%= ENV['DATABASE_URL'] %>
-#
-production:
-  <<: *default
-  database: iris-api_production
-  username: iris-api
-  password: <%= ENV['IRIS-API_DATABASE_PASSWORD'] %>
+  production:
+    url: <%= ENV['DATABASE_URL'] %>
+
+# production:
+#   <<: *default
+#   database: iris-api_production
+#   username: iris-api
+#   password: <%= ENV['IRIS-API_DATABASE_PASSWORD'] %>
