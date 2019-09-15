@@ -18,7 +18,7 @@ gem 'puma', '~> 3.11'
 
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
-gem 'sidekiq'
+# gem 'sidekiq'
 
 # Use Capistrano for deployment
 # gem 'bundler', '~> 2.0.1'
