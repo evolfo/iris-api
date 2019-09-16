@@ -73,7 +73,7 @@ Rails.application.configure do
     port:                 587,
     domain:               'irislune.com',
     user_name:            'irislune.music@gmail.com',
-    password:             'Br00cl1n3',
+    password:             'Br00cl1n3!',
     authentication:       'plain',
     enable_starttls_auto: true  
   }
