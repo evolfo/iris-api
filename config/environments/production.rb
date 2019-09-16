@@ -54,7 +54,30 @@ Rails.application.configure do
   # config.active_job.queue_adapter     = :resque
   # config.active_job.queue_name_prefix = "iris-api_#{Rails.env}"
 
+  # Don't care if the mailer can't send.
+  config.action_mailer.raise_delivery_errors = false
+
   config.action_mailer.perform_caching = false
+
+  config.action_mailer.delivery_method = :sendmail
+
+  config.action_mailer.perform_caching = false
+
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.default_options = {from: 'management@irislune.com'}
+
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    address:              'smtp.gmail.com',
+    port:                 587,
+    domain:               'irislune.com',
+    user_name:            'irislune.music@gmail.com',
+    password:             'Br00cl1n3',
+    authentication:       'plain',
+    enable_starttls_auto: true  
+  }
+
 
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
