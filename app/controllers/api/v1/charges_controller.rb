@@ -1,6 +1,6 @@
 class Api::V1::ChargesController < ApplicationController
 	Stripe.api_key = ENV['STRIPE_SECRET_LIVE_KEY']
-	puts ENV['STRIPE_SECRET_LIVE_KEY']
+	byebug
 	# Stripe.api_key = ENV['STRIPE_SECRET_KEY']
 
 	def create
