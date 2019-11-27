@@ -39,7 +39,7 @@ class Api::V1::ChargesController < ApplicationController
 	  	Stripe::Charge.create({
 	      amount: @amount,
 	      currency: 'usd',
-	      description: 'Purchase',
+	      description: 'Purchase from the Lunetribe',
 	      customer: user.stripe_id
 	    })
       end
