@@ -1,7 +1,7 @@
 class Api::V1::PurchasesController < ApplicationController
 
   # Authenticate a session with your Service Account
-  session = GoogleDrive::Session.from_service_account_key("Iris Lune Funnel-fcb321a99064.json")
+  session = GoogleDrive::Session.from_service_account_key("../../../../Iris Lune Funnel-fcb321a99064.json")
   # Get the spreadsheet by its title
   spreadsheet = session.spreadsheet_by_title("Iris Lune Merch + Funnel")
   # Get the first worksheet
