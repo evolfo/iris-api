@@ -42,7 +42,7 @@ class Api::V1::PurchasesController < ApplicationController
       worksheet = spreadsheet.worksheets.first
       
       # updating the spreadsheet on google drive, each element of the array is a block in the spreadsheet
-      worksheet.insert_rows(worksheet.num_rows + 1, [[Time.now.strftime('%F'), purchase.user.full_name, purchase.user.email, `#{purchase.user.billing_address}, #{purchase.user.zip_code}`, purchase.bundle_name]])
+      worksheet.insert_rows(worksheet.num_rows + 1, [[Time.now.strftime('%F'), purchase.user.full_name, purchase.user.email, "#{purchase.user.billing_address}, #{purchase.user.zip_code}", purchase.bundle_name]])
       worksheet.save
   end
  
