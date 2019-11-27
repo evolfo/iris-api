@@ -1,6 +1,6 @@
 class Api::V1::ChargesController < ApplicationController
-	Stripe.api_key = ENV['STRIPE_SECRET_LIVE_KEY']
-	# Stripe.api_key = ENV['STRIPE_SECRET_KEY']
+	# Stripe.api_key = ENV['STRIPE_SECRET_LIVE_KEY']
+	Stripe.api_key = 'sk_test_jHV82ZbgjYBCtRwb7azV2QG900mpb4Af3v'
 
 	def create
 	  @amount = params[:amount]
