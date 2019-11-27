@@ -1,5 +1,12 @@
 class Api::V1::PurchasesController < ApplicationController
 
+  # Authenticate a session with your Service Account
+  session = GoogleDrive::Session.from_service_account_key("Iris Lune Funnel-fcb321a99064.json")
+  # Get the spreadsheet by its title
+  spreadsheet = session.spreadsheet_by_title("Iris Lune Merch + Funnel")
+  # Get the first worksheet
+  worksheet = spreadsheet.worksheets.first
+
   before_action :find_purchase, only: [:update]
 
   def index
@@ -14,6 +21,10 @@ class Api::V1::PurchasesController < ApplicationController
   	  render json: { purchase: PurchaseSerializer.new(@purchase) }, status: :created
       PurchaseMailer.purchase_email(@purchase.user, @purchase).deliver_now
       AdminMailer.admin_email(@purchase.user, @purchase).deliver_now
+      
+      # updating the spreadsheet on google drive, each element of the array is a block in the spreadsheet
+      worksheet.insert_rows(worksheet.num_rows + 1, [[Time.now.strftime('%F'), @purchase.user.full_name, @purchase.user.billing_address + ", " + @purchase.user.zip_code, @purchase.bundle_name]])
+      worksheet.save
   	else
   	  render json: { errors: @purchase.errors.full_messages }, status: :unprocessible_entity
   	end

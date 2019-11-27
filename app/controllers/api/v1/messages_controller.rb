@@ -10,7 +10,8 @@ class Api::V1::MessagesController < ApplicationController
   def create
   	@message = Message.create(message_params)
   	if @message.valid?
-  	  render json: { message: MessageSerializer.new(@message) }, status: :created
+      render json: { message: MessageSerializer.new(@message) }, status: :created
+      LunetribeMailer.lunetribe_email(@message.user).deliver_now
   	else
   	  render json: { errors: @message.errors.full_messages }, status: :unprocessible_entity
   	end

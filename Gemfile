@@ -21,7 +21,7 @@ gem 'puma', '~> 3.11'
 # gem 'sidekiq'
 
 # Use Capistrano for deployment
-# gem 'bundler', '~> 2.0.1'
+gem 'bundler'
 
 gem 'delayed_job_active_record'
 # gem 'capistrano-rails', group: :development
@@ -34,7 +34,8 @@ gem 'bootsnap', '>= 1.1.0', require: false
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
 gem 'rack-cors'
 
-gem 'byebug'
+gem 'google_drive'
+gem 'google-api-client', :require => 'google/apis/sheets_v4'
 
 gem 'active_model_serializers'
 

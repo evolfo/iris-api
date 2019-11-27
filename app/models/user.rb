@@ -7,4 +7,8 @@ class User < ApplicationRecord
 	def add_tier 
 		self.tier = "silver"
 	end
+
+	def full_name
+		return self.first_name + " " + self.last_name
+	end
 end
