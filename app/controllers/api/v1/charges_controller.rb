@@ -1,6 +1,6 @@
 class Api::V1::ChargesController < ApplicationController
-	Stripe.api_key = ENV['STRIPE_SECRET_LIVE_KEY']
-	# Stripe.api_key = 'sk_test_jHV82ZbgjYBCtRwb7azV2QG900mpb4Af3v'
+	# Stripe.api_key = ENV['STRIPE_SECRET_LIVE_KEY']
+	Stripe.api_key = 'sk_test_jHV82ZbgjYBCtRwb7azV2QG900mpb4Af3v'
 
 	def create
 	  @amount = params[:amount]
@@ -45,6 +45,9 @@ class Api::V1::ChargesController < ApplicationController
 			  user: user,
 			  purchase: purchase
 		  }
+
+		  PurchaseMailer.purchase_email(user, purchase).deliver_now
+      	  AdminMailer.admin_email(user, purchase).deliver_now
       	else
           render json: { errors: user.errors.full_messages }, status: :unprocessible_entity
 		end

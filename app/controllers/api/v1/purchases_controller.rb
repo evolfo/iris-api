@@ -12,9 +12,6 @@ class Api::V1::PurchasesController < ApplicationController
     
   	if @purchase.valid?
   	  render json: { purchase: PurchaseSerializer.new(@purchase) }, status: :created
-      PurchaseMailer.purchase_email(@purchase.user, @purchase).deliver_now
-      AdminMailer.admin_email(@purchase.user, @purchase).deliver_now
-
       update_spreadsheet(@purchase)
   	else
   	  render json: { errors: @purchase.errors.full_messages }, status: :unprocessible_entity
