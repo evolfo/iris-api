@@ -1,5 +1,6 @@
 <h1><%= @user.first_name %> <%= @user.last_name %> just bought a <%= @purchase.bundle_name %> for $<%= @purchase.amount %>.</h1>
   <h5>Shipping Info:</h5>
+  <h6>Purchase ID: <%= @purchase.order_id %></h6>
   <ul>
   	<li>Name: <%= @user.first_name %> <%= @user.last_name %></li>
   	<li>Phone: <%= @user.phone %></li>

@@ -42,12 +42,12 @@ class Api::V1::PurchasesController < ApplicationController
       worksheet = spreadsheet.worksheets.first
       
       # updating the spreadsheet on google drive, each element of the array is a block in the spreadsheet
-      worksheet.insert_rows(worksheet.num_rows + 1, [[Time.now.strftime('%F'), purchase.user.full_name, purchase.user.email, "#{purchase.user.billing_address}, #{purchase.user.zip_code}", purchase.bundle_name]])
+      worksheet.insert_rows(worksheet.num_rows + 1, [[Time.now.strftime('%F'), purchase.user.full_name, purchase.user.email, "#{purchase.user.billing_address}, #{purchase.user.zip_code}", purchase.bundle_name, "n"]])
       worksheet.save
   end
  
   def purchase_params
-    params.permit(:amount, :bundle_name, :user_id)
+    params.permit(:amount, :bundle_name, :user_id, :order_id)
   end
  
   def find_purchase
