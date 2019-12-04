@@ -30,7 +30,7 @@ class Api::V1::ChargesController < ApplicationController
 	      customer: customer.id
 	    })
 	  else 
-	  	Stripe::Charge.create({
+	  	charge = Stripe::Charge.create({
 	      amount: @amount,
 	      currency: 'usd',
 	      description: params[:bundle_name],
