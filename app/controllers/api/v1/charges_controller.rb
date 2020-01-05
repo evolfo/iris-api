@@ -1,6 +1,6 @@
 class Api::V1::ChargesController < ApplicationController
-	Stripe.api_key = ENV['STRIPE_SECRET_LIVE_KEY']
-	# Stripe.api_key = 'sk_test_jHV82ZbgjYBCtRwb7azV2QG900mpb4Af3v'
+	# Stripe.api_key = ENV['STRIPE_SECRET_LIVE_KEY']
+	Stripe.api_key = 'sk_test_jHV82ZbgjYBCtRwb7azV2QG900mpb4Af3v'
 
 	def create
 	  @amount = params[:amount]
@@ -45,6 +45,18 @@ class Api::V1::ChargesController < ApplicationController
 			  user: user,
 			  purchase: purchase
 		  }
+
+		  # Authenticate a session with your Service Account
+		  session = GoogleDrive::Session.from_service_account_key("Iris Lune Funnel-fcb321a99064.json")
+
+		  # Get the spreadsheet by its title
+		  spreadsheet = session.spreadsheet_by_title("Iris Lune Merch + Funnel")
+		  # Get the first worksheet
+		  worksheet = spreadsheet.worksheets.first
+		
+		  # updating the spreadsheet on google drive, each element of the array is a block in the spreadsheet
+		  worksheet.insert_rows(worksheet.num_rows + 1, [[Time.now.strftime('%F'), purchase.user.full_name, purchase.user.email, "#{purchase.user.billing_address}, #{purchase.user.zip_code}", purchase.bundle_name, "n"]])
+		  worksheet.save
 
 		  PurchaseMailer.purchase_email(user, purchase).deliver_now
       	  AdminMailer.admin_email(user, purchase).deliver_now
