@@ -1,5 +1,5 @@
 class Api::V1::MessagesController < ApplicationController
-
+  before_action :authenticate, only: [:index]
   before_action :find_message, only: [:update]
 
   def index

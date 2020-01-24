@@ -1,5 +1,5 @@
 class Api::V1::PurchasesController < ApplicationController
-
+  before_action :authenticate, only: [:index]
   before_action :find_purchase, only: [:update]
 
   def index
