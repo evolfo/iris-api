@@ -40,7 +40,7 @@ class Api::V1::ChargesController < ApplicationController
 
 	  user.update(stripe_id: customer.id)
 	  purchase.update(order_id: charge.id)
-	    if user.save && purchase.save
+	    if user.save || purchase.save
           render json: {
 			  user: user,
 			  purchase: purchase
