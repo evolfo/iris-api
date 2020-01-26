@@ -13,8 +13,10 @@ class Api::V1::ChargesController < ApplicationController
 	  end
 
 	  user = User.find(params[:user_id])
-	  purchase = Purchase.find_by(user_id: params[:user_id])
+	  purchase = user.purchases.last
 	  @amount = (@amount).to_i # Must be an integer!
+
+	  byebug
 
 	  # Create a Customer if the user doesn't have a stripe_id already:
 	  if !user.stripe_id
@@ -28,7 +30,9 @@ class Api::V1::ChargesController < ApplicationController
 	      currency: 'usd',
 	      description: params[:bundle_name],
 	      customer: customer.id
-	    })
+		})
+		
+		user.update(stripe_id: customer.id)
 	  else 
 	  	charge = Stripe::Charge.create({
 	      amount: @amount,
@@ -38,9 +42,8 @@ class Api::V1::ChargesController < ApplicationController
 	    })
 	  end
 
-	  user.update(stripe_id: customer.id)
 	  purchase.update(order_id: charge.id)
-	    if user.save || purchase.save
+	    if purchase.save || user.save
           render json: {
 			  user: user,
 			  purchase: purchase
@@ -58,8 +61,8 @@ class Api::V1::ChargesController < ApplicationController
 		  worksheet.insert_rows(worksheet.num_rows + 1, [[Time.now.strftime('%F'), purchase.user.full_name, purchase.user.email, "#{purchase.user.billing_address}, #{purchase.user.zip_code}", purchase.bundle_name, "n"]])
 		  worksheet.save
 
-		  PurchaseMailer.purchase_email(user, purchase).deliver_now
-      	  AdminMailer.admin_email(user, purchase).deliver_now
+		  PurchaseMailer.purchase_email(purchase).deliver_now
+      	  AdminMailer.admin_email(purchase).deliver_now
       	else
           render json: { errors: user.errors.full_messages }, status: :unprocessible_entity
 		end
