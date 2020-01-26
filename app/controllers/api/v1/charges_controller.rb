@@ -16,8 +16,6 @@ class Api::V1::ChargesController < ApplicationController
 	  purchase = user.purchases.last
 	  @amount = (@amount).to_i # Must be an integer!
 
-	  byebug
-
 	  # Create a Customer if the user doesn't have a stripe_id already:
 	  if !user.stripe_id
 	    customer = Stripe::Customer.create({
