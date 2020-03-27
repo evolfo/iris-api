@@ -28,20 +28,6 @@ class Api::V1::PurchasesController < ApplicationController
   end
  
   private
-
-  # def update_spreadsheet(purchase)
-  #   # Authenticate a session with your Service Account
-  #     session = GoogleDrive::Session.from_service_account_key("Iris Lune Funnel-fcb321a99064.json")
-
-  #     # Get the spreadsheet by its title
-  #     spreadsheet = session.spreadsheet_by_title("Iris Lune Merch + Funnel")
-  #     # Get the first worksheet
-  #     worksheet = spreadsheet.worksheets.first
-      
-  #     # updating the spreadsheet on google drive, each element of the array is a block in the spreadsheet
-  #     worksheet.insert_rows(worksheet.num_rows + 1, [[Time.now.strftime('%F'), purchase.user.full_name, purchase.user.email, "#{purchase.user.billing_address}, #{purchase.user.zip_code}", purchase.bundle_name, "n"]])
-  #     worksheet.save
-  # end
  
   def purchase_params
     params.permit(:amount, :bundle_name, :user_id, :order_id)
